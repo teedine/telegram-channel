@@ -12,6 +12,15 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Install FFmpeg
+      uses: FedericoCarboni/setup-ffmpeg@v3
+      id: setup-ffmpeg
+      with:
+          ffmpeg-version: release
+          architecture: 'x64'
+          linking-type: static
+          github-token: ${{ github.server_url == 'https://github.com' && github.token || '' }}
 
     - name: Set up Go
       uses: actions/setup-go@v4
