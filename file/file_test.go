@@ -12,6 +12,7 @@ func Test_cleanPath(t *testing.T) {
 		want string
 	}{
 		{"malformed path", args{`E:\\Videos\\telegram\\enc`}, `E:\Videos\telegram\enc`},
+		{"very malformed path", args{`E:\\\\\Videos\\\telegram\\\\\\\\enc`}, `E:\Videos\telegram\enc`},
 		{"clean path", args{`E:\Videos\telegram\enc`}, `E:\Videos\telegram\enc`},
 	}
 	for _, tt := range tests {

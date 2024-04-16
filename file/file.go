@@ -105,14 +105,22 @@ func IsDirectory(path string) bool {
 
 func cleanPath(s string) string {
 	var c string
-	hit := false
 
-	for _, v := range s {
-		if v == '\\' && hit {
-			hit = false
+	r := []rune(s)
+
+	for i := 0; i < len(r); i++ {
+		if r[i] == '\\' {
+			c = c + string(r[i])
+			for k := i; k < len(r); k++ {
+				if r[k] != '\\' {
+					c = c + string(r[i])
+					break
+				} else {
+					i++
+				}
+			}
 		} else {
-			hit = true
-			c = c + string(v)
+			c = c + string(r[i])
 		}
 	}
 
