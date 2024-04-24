@@ -2,14 +2,15 @@
    telegram-channel is a small telegram bot for encoding and uploading videos to a channel automatically
 ## Install
     go install github.com/teedine/telegram-channel@latest
+    
 make sure ffmpeg is installed somewhere on your system
 ## Usage
     ./telegram-channel [config file]
 
     if no path is given to a configuration file, telegram-channel will assume a file named  `config` exists in working directory.
 ## Config
-    CHANNELID	# channel ID to send content to	    
-    APITOKEN	# API token recieved from telegram
+    CHANNELID	# channel ID to send content to (see [this](https://stackoverflow.com/a/50984134) on obtaining private channel ids)
+    APITOKEN	# API token recieved from telegram (see [telegram docs](https://core.telegram.org/api/obtaining_api_id))
     WATCHPATH	# folder path to watch newly created videos
     ENCODEPATH	# folder path to encode videos found in WATCHPATH
     UPLOADPATH	# folder path to upload videos to your channel
