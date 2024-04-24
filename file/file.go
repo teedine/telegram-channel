@@ -3,6 +3,7 @@ package file
 import (
 	"fmt"
 	"math"
+	"mime"
 	"os"
 	"strings"
 	"sync"
@@ -130,4 +131,13 @@ func cleanPath(s string) string {
 func GetSize(s string) int {
 	f, _ := os.Stat(s)
 	return int(f.Size())
+}
+
+func IsVideo(ext string) bool {
+	s := mime.TypeByExtension(ext)
+	if b, _, _ := strings.Cut(s, "/"); b == "video" {
+		return true
+	}
+
+	return false
 }

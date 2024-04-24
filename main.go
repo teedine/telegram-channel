@@ -64,6 +64,11 @@ func videoWatch(Bot *telegram.Bot, cs Config, filepath string) {
 		return
 	}
 
+	if !file.IsVideo(filepath) {
+		fmt.Println("ignoring non-video")
+		return
+	}
+
 	dir := path.Dir(filepath)
 	if dir == cs.UploadFromPath && file.GetSize(filepath) > 512 {
 		channelID, _ := strconv.Atoi(cs.ChannelID)

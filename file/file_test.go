@@ -1,6 +1,8 @@
 package file
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_cleanPath(t *testing.T) {
 	type args struct {
@@ -19,6 +21,29 @@ func Test_cleanPath(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := cleanPath(tt.args.s); got != tt.want {
 				t.Errorf("cleanPath() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_IsVideo(t *testing.T) {
+	type args struct {
+		ext string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{"video", args{".mp4"}, true},
+		{"non video", args{".txt"}, false},
+		{"garbage input", args{"hkjdsft789345"}, false},
+		{"blank", args{""}, false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := IsVideo(tt.args.ext); got != tt.want {
+				t.Errorf("IsVideo() = %v, want %v", got, tt.want)
 			}
 		})
 	}
