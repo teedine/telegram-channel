@@ -17,6 +17,7 @@ type Config struct {
 	WatchPath      string
 	EncodeToPath   string
 	UploadFromPath string
+	EncodeSpeed    string
 }
 
 const DefaultConfigPath = "config"
@@ -39,6 +40,7 @@ func main() {
 		WatchPath:      c.Get("WATCHPATH"),
 		EncodeToPath:   c.Get("ENCODEPATH"),
 		UploadFromPath: c.Get("UPLOADPATH"),
+		EncodeSpeed:    c.Get("ENCODESPEED"),
 	}
 
 	Bot, err := telegram.NewBot(cs.APIToken)
@@ -75,7 +77,7 @@ func videoWatch(Bot *telegram.Bot, cs Config, filepath string) {
 	}
 
 	if dir == cs.WatchPath {
-		if err := file.Encode(filepath, cs.EncodeToPath); err != nil {
+		if err := file.Encode(filepath, cs.EncodeToPath, cs.EncodeSpeed); err != nil {
 			fmt.Printf("main.videoWatch()/file.Encode() err: %v\n", err.Error())
 		}
 	}

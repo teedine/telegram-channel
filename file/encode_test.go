@@ -20,7 +20,7 @@ func TestEncode(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := Encode(tt.args.filename, tt.args.output); (err != nil) != tt.wantErr {
+			if err := Encode(tt.args.filename, tt.args.output, "veryfast"); (err != nil) != tt.wantErr {
 				t.Errorf("Encode() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
