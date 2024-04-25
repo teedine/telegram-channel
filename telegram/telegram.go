@@ -22,11 +22,11 @@ func NewBot(APIToken string) (*Bot, error) {
 	return &Bot{t}, nil
 }
 
-func (b *Bot) SendVideo(r string, channelID int64) (tg.Message, error) {
-	c := tg.NewVideoUpload(channelID, r)
+func (b *Bot) SendVideo(filepath string, channelID int64) (tg.Message, error) {
+	c := tg.NewVideoUpload(channelID, filepath)
 	c.BaseChat.DisableNotification = true
 
-	fmt.Println("uploading", r)
+	fmt.Println("uploading", filepath)
 	msg, err := b.T.Send(c)
 	if err != nil {
 		return tg.Message{}, err
