@@ -26,7 +26,7 @@ func (b *Bot) SendVideo(filepath string, channelID int64) (tg.Message, error) {
 	c := tg.NewVideoUpload(channelID, filepath)
 	c.BaseChat.DisableNotification = true
 
-	fmt.Println("uploading", filepath)
+	fmt.Println("uploading", r)
 	msg, err := b.T.Send(c)
 	if err != nil {
 		return tg.Message{}, err
