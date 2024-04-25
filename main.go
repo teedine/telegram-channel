@@ -18,6 +18,7 @@ type Config struct {
 	EncodeToPath   string
 	UploadFromPath string
 	EncodeSpeed    string
+	EncodeQuality  int
 }
 
 const DefaultConfigPath = "config"
@@ -41,6 +42,13 @@ func main() {
 		EncodeToPath:   c.Get("ENCODEPATH"),
 		UploadFromPath: c.Get("UPLOADPATH"),
 		EncodeSpeed:    c.Get("ENCODESPEED"),
+	}
+
+	if q, err := strconv.Atoi(c.Get("ENCODEQUALITY")); err != nil {
+		fmt.Printf("invalid ENCODEQUALITY value. %s. using default of 30\n", err)
+		cs.EncodeQuality = 30
+	} else {
+		cs.EncodeQuality = q
 	}
 
 	Bot, err := telegram.NewBot(cs.APIToken)
@@ -87,7 +95,7 @@ func videoWatch(Bot *telegram.Bot, cs Config, filepath string) {
 	}
 
 	if dir == cs.WatchPath {
-		if err := file.Encode(filepath, cs.EncodeToPath, cs.EncodeSpeed); err != nil {
+		if err := file.Encode(filepath, cs.EncodeToPath, cs.EncodeSpeed, cs.EncodeQuality); err != nil {
 			fmt.Printf("main.videoWatch()/file.Encode() err: %v\n", err.Error())
 		}
 	}

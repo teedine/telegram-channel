@@ -12,7 +12,8 @@ if no path is given to a configuration file, telegram-channel will assume a file
     WATCHPATH	   # folder path to watch newly created videos
     ENCODEPATH	   # folder path to encode videos found in WATCHPATH
     UPLOADPATH	   # folder path to upload videos to your channel
-    ENCODESPEED        # ffmpeg speed preset
+    ENCODESPEED    # ffmpeg speed preset for HEVC
+    ENCODEQUALITY  # ffmpeg CRF value for HEVC
 ### Example
     CHANNELID=-1002094548386
     APITOKEN=3248743566:NJVWY2DEMZ2TKNRzha3xk4TZM5Tgq2tlGU3
@@ -20,6 +21,7 @@ if no path is given to a configuration file, telegram-channel will assume a file
     ENCODEPATH=C:/Users/foo/Captures/enc
     UPLOADPATH=C:/Users/foo/Captures/enc
     ENCODESPEED=medium
+    ENCODEQUALITY=25
 
 ## Notes
  - untested on Linux

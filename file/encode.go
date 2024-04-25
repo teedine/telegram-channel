@@ -11,7 +11,7 @@ import (
 	ffmpeg_go "github.com/u2takey/ffmpeg-go"
 )
 
-func Encode(filename, output, speed string) error {
+func Encode(filename, output, speed string, quality int) error {
 	scaleFilterArgs := ffmpeg_go.Args{
 		"min(1280,iw):min(720,ih)",
 		"force_original_aspect_ratio=decrease",
@@ -29,7 +29,7 @@ func Encode(filename, output, speed string) error {
 		"preset":   speed,
 		"pix_fmt":  "yuv420p",
 		"c:v":      "libx265",
-		"crf":      22,
+		"crf":      quality,
 		"r":        60,
 		"c:a":      "aac",
 		"b:a":      "64k",
