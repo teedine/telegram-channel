@@ -129,6 +129,7 @@ func cleanPath(s string) string {
 	return c
 }
 
+// returns size in bytes
 func GetSize(s string) int {
 	f, _ := os.Stat(s)
 	return int(f.Size())

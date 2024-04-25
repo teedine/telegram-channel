@@ -70,7 +70,12 @@ func videoWatch(Bot *telegram.Bot, cs Config, filepath string) {
 	}
 
 	dir := path.Dir(filepath)
-	if dir == cs.UploadFromPath && file.GetSize(filepath) > 512 {
+	if dir == cs.UploadFromPath {
+		if file.GetSize(filepath) > 512 {
+			fmt.Println("ignoring video below 512 bytes")
+			return
+		}
+
 		channelID, _ := strconv.Atoi(cs.ChannelID)
 
 		rsp, err := Bot.SendVideo(filepath, int64(channelID))
