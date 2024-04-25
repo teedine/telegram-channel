@@ -35,7 +35,8 @@ func Test_IsVideo(t *testing.T) {
 		args args
 		want bool
 	}{
-		{"video", args{".mp4"}, true},
+		{"video extension", args{".mp4"}, true},
+		{"video windows path", args{`C:\Users\foo\Videos\Captures\replay_2024.04.24-20.26.mp4`}, true},
 		{"non video", args{".txt"}, false},
 		{"garbage input", args{"hkjdsft789345"}, false},
 		{"blank", args{""}, false},

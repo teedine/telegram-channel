@@ -5,6 +5,7 @@ import (
 	"math"
 	"mime"
 	"os"
+	"path"
 	"strings"
 	"sync"
 	"time"
@@ -133,8 +134,8 @@ func GetSize(s string) int {
 	return int(f.Size())
 }
 
-func IsVideo(ext string) bool {
-	s := mime.TypeByExtension(ext)
+func IsVideo(filepath string) bool {
+	s := mime.TypeByExtension(path.Ext(cleanPath(filepath)))
 	if b, _, _ := strings.Cut(s, "/"); b == "video" {
 		return true
 	}
