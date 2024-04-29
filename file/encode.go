@@ -45,7 +45,7 @@ func Encode(filename, output, speed string, quality int) error {
 	if !strings.HasSuffix(output, "/") || !strings.HasSuffix(output, "\\") {
 		output = output + "/"
 	}
-	output = output + str + ".mkv"
+	output = output + str + ".mp4"
 
 	err := stream.OverWriteOutput().Output(output, HEVCargs).ErrorToStdOut().Run()
 	if err != nil {
